@@ -35,10 +35,10 @@
                   <a class="nav-link disabled">Contacts</a>
                 </li>
               </ul>
-              <form class="d-flex">
+              <!-- <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
-              </form>
+              </form> -->
             </div>
           </div>
         </nav>
@@ -49,11 +49,12 @@
   <main>
     <section class="content">
       <div class="container">
+        <div class="js-fixed-message">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
         <div class="row mt-3 mb-3">
           <div class="col col-12 col-md-3 border-end border-info">
-            <form class="search-form" action="" method="GET">
-              <input type="search" class="form-control mt-2">
-              <input type="text" class="form-control mt-2">
+            <form class="js-search-form" action="" method="GET">
+              <input type="search" class="form-control mt-2 js-search-input" placeholder="Search text...">
+              <input type="text" class="form-control mt-2" placeholder="Rating">
               <select class="form-select mt-2" aria-label="Select Category">
                 <option selected value="all">All</option>
                 <option value="1">One</option>
@@ -71,39 +72,44 @@
             </form>
           </div>
           <!-- <div class="vr col col-1 d-none d-md-block"></div> -->
-          <div class="col col-12 col-md-9 mt-3 mt-md-0 text-end">
+          <div class="col col-12 col-md-9 mt-3 mt-md-0 text-center">
 
             <!-- cards-wrapper -->
-            <div class="d-flex align-items-start justify-content-evenly flex-wrap mb-3 js-cards-wrapper">
-              <div class="loading-wrapper js-load">
-                <div class="spinner-border loading" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
-              </div>
-            </div> <!-- cards-wrapper -->
+            <output class="js-output-result"></output>
 
-            <div class="d-flex align-items-start justify-content-around js-pagination-wrapper">
-              <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+            <div class="loading-wrapper js-load">
+              <div class="spinner-border loading" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-start justify-content-around mt-3 js-pagination-wrapper">
+              <button class="btn btn-primary js-view-bookmark-btn" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">View bookmark</button>
 
               <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
                 id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
                 <div class="offcanvas-header">
-                  <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Colored with scrolling</h5>
+                  <h5 class="offcanvas-title text-primary" id="offcanvasScrollingLabel">Bookmark list</h5>
                   <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                     aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                  <p>Try scrolling the rest of the page to see this option in action.</p>
+                  <p class="js-bookmark-massage"></p>
+                  <ul class="list-unstyled text-start js-bookmark-list"></ul>
                 </div>
               </div>
-              <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              <nav aria-label="Page navigation">
+                <ul class="pagination js-pagination-list">
+                  <li class="page-item js-prev-btn"><a class="page-link" href="#">Previous</a></li>
+                  <li class="page-item js-next-btn"><a class="page-link" href="#">Next</a></li>
                 </ul>
               </nav>
             </div>
+
+            <div class="d-flex align-items-stretch justify-content-evenly flex-wrap js-cards-wrapper">
+
+            </div> <!-- cards-wrapper -->
 
           </div>
         </div><!-- row -->
@@ -114,12 +120,16 @@
   <template id="js-card-template">
     <div class="card text-start mb-3" style="width: 18rem;">
       <img class="card-img-top js-card-img" src="..." alt="...">
-      <div class="card-body">
-        <h5 class="card-title js-card-title"></h5>
-        <p class="card-text mb-0"><b>Type:</b> <span class="js-movie-type"></span></p>
-        <p class="card-text"><b>Year:</b> <span class="js-movie-year"></span></p>
-        <a href="#" class="btn btn-primary js-watch-link">Watch</a>
-        <button class="btn btn-primary js-bookmark-btn" type="button">Bookmark</button>
+      <div class="card-body d-flex flex-column justify-content-between">
+        <div class="mb-3">
+          <h5 class="card-title js-card-title"></h5>
+          <p class="card-text mb-0"><b>Type:</b> <span class="js-movie-type"></span></p>
+          <p class="card-text"><b>Year:</b> <span class="js-movie-year"></span></p>
+        </div>
+        <div>
+          <a href="#" class="btn btn-primary js-watch-link">Watch</a>
+          <button class="btn btn-primary js-bookmark-btn" type="button">Bookmark</button>
+        </div>
       </div>
     </div>
   </template>
