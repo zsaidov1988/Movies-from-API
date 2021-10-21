@@ -1,7 +1,7 @@
 
 function fetchApi(searchText, page) {
 
-  fetch(`https://www.omdbapi.com/?s=${searchText}&apikey=2b537ff6&page=${page}`).then((response) => response.json()).then((data) => {
+  fetch(`https://www.omdbapi.com/?apikey=2b537ff6&s=${searchText}&page=${page}`).then((response) => response.json()).then((data) => {
     elLoadWrap.style.display = "none";
     elOutputResult.style.display = "inline";
     elCardsWrapper.innerHTML = "";
@@ -73,7 +73,7 @@ function updateBookmarkList() {
 }
 
 function createBookmarkItem(id) {
-  fetch(`https://www.omdbapi.com/?i=${id}&apikey=2b537ff6`).then((response) => response.json()).then((data) => {
+  fetch(`https://www.omdbapi.com/?apikey=2b537ff6&i=${id}`).then((response) => response.json()).then((data) => {
     const elem = createElement("li", "d-flex align-items-center justify-content-between border border-secondary rounded-1 mb-1 p-1", "", elBookmarkList);
     createElement("span", "", data.Title, elem);
     createElement("button", "btn btn-danger btn-sm", "Delete", elem).value = data.imdbID;
