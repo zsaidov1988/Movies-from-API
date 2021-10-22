@@ -2,7 +2,7 @@
 function fetchApi(searchText, page) {
 
   fetch(`https://www.omdbapi.com/?apikey=2b537ff6&s=${searchText}&page=${page}`).then((response) => response.json()).then((data) => {
-    elLoadWrap.style.display = "none";
+    elLoadWrap.style.display = "flex";
     elOutputResult.style.display = "inline";
     elCardsWrapper.innerHTML = "";
     if (data.Response === "False") {
@@ -10,12 +10,13 @@ function fetchApi(searchText, page) {
       elOutputResult.classList.add("error");
       elOutputResult.textContent = data.Error;
       elPaginationList.style.display = "none";
+      elLoadWrap.style.display = "none";
     } else {
       countResults = parseInt(data.totalResults);
       elOutputResult.classList.remove("error");
       elOutputResult.textContent = `Results: ${countResults} | Page: ${pageNumber}/${Math.ceil(countResults / COUNT_MOVIE_PER_PAGE)}`;
       elPaginationList.style.display = "flex";
-      console.log(data.Search);
+      elLoadWrap.style.display = "none";
       working(data.Search);
     }
   });
